@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:netflix/models/movie_model.dart';
+import 'package:netflix/repository/netflix_repository.dart';
+import 'package:netflix/services/netflix_api_service.dart';
 import 'package:netflix/utils/constant.dart';
+import 'package:provider/provider.dart';
 
 class NetflixHome extends StatefulWidget {
   const NetflixHome({super.key});
@@ -11,7 +15,19 @@ class NetflixHome extends StatefulWidget {
 
 class _NetflixHomeState extends State<NetflixHome> {
   @override
+  void initState() {
+    super.initState();
+    getMovies();
+  }
+
+  Future<void> getMovies() async {
+    final dataProvider = Provider.of<NetflixRepository>(context, listen: false);
+    await dataProvider.getPopularMovies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final dataProvider = Provider.of<NetflixRepository>(context);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -22,6 +38,12 @@ class _NetflixHomeState extends State<NetflixHome> {
         Container(
           height: 500,
           color: Colors.red,
+          child: dataProvider.popularMovieList.isEmpty
+              ? const Center()
+              : Image.network(
+                  dataProvider.popularMovieList[0].posterUrl(),
+                  fit: BoxFit.cover,
+                ),
         ),
         const SizedBox(
           height: 15,
@@ -47,9 +69,14 @@ class _NetflixHomeState extends State<NetflixHome> {
                 margin: const EdgeInsets.only(right: 8),
                 width: 110,
                 color: Colors.yellow,
-                child: Center(
-                  child: Text(index.toString()),
-                ),
+                child: dataProvider.popularMovieList.isEmpty
+                    ? Center(
+                        child: Text(index.toString()),
+                      )
+                    : Image.network(
+                        dataProvider.popularMovieList[index].posterUrl(),
+                        fit: BoxFit.cover,
+                      ),
               );
             },
           ),

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:netflix/services/neftlix_api.dart';
 
 class Movie {
