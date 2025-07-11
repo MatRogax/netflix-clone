@@ -10,7 +10,6 @@
 .svn/
 migrate_working_dir/
 
-
 # IntelliJ related
 *.iml
 *.ipr
@@ -43,3 +42,29 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignorar arquivos de C++
+*.cpp
+*.hpp
+*.h
+*.cc
+*.cxx
+*.hh
+*.hxx
+
+# Ignorar arquivos do CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+CMakeUserPresets.json
+
+# FVM Version Cache
+.fvm/

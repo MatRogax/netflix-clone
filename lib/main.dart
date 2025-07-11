@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/repository/netflix_repository.dart';
-import 'package:netflix/ui/widgets/netflix_home_widget.dart';
+import 'package:netflix/ui/widgets/netflix_loadingscreen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class Myapp extends StatelessWidget {
     return const MaterialApp(
       title: "Netflix",
       debugShowCheckedModeBanner: false,
-      home: NetflixHome(),
+      home: LoadingScreen(), //NetflixHome(),
     );
   }
 }

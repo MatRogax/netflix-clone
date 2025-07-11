@@ -20,4 +20,8 @@ class NetflixRepository with ChangeNotifier {
       throw ("ERROR: ${response.statusCode}");
     }
   }
+
+  Future<void> initData() async {
+    await getPopularMovies();
+  }
 }
